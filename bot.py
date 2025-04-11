@@ -1,4 +1,3 @@
-
 import discord
 from discord.ext import commands
 import os
@@ -23,6 +22,9 @@ async def on_ready():
 @bot.event
 async def on_raw_reaction_add(payload):
     if payload.channel_id != VERIFICATION_CHANNEL_ID:
+        return
+
+    if str(payload.emoji.name) != "✅":
         return
 
     guild = bot.get_guild(payload.guild_id)
